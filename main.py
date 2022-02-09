@@ -15,8 +15,7 @@ UPLOAD_AUDIO_FOLDER = Path('modes/Audio/static')
 AUDIO_CACHE_FOLDER = Path('modes/Audio/__pycache__')
 UPLOAD_VIDEO_FOLDER = Path('modes/Video/static')
 VIDEO_CACHE_FOLDER = Path('modes/Video/__pycache__')
-UPLOAD_IMAGE_FOLDER =Path('modes/Image/static')
-IMAGE_CACHE_FOLDER = Path('modes/Image/__pycache__')
+
 
 
 
