@@ -5,17 +5,18 @@ from modes.Image.image import image
 from modes.Audio.audio import audio
 from modes.Text.text import text
 from modes.Video.video import video
+from pathlib import Path
 
-UPLOAD_IMAGE_FOLDER = 'modes\\Image\\static'
-IMAGE_CACHE_FOLDER = 'modes\\Image\\__pycache__'
-UPLOAD_TEXT_FOLDER = 'modes\\Text\\static'
-TEXT_CACHE_FOLDER = 'modes\\Text\\__pycache__'
-UPLOAD_AUDIO_FOLDER = 'modes\\Audio\\static'
-AUDIO_CACHE_FOLDER = 'modes\\Audio\\__pycache__'
-UPLOAD_VIDEO_FOLDER = 'modes\\Video\\static'
-VIDEO_CACHE_FOLDER = 'modes\\Video\\__pycache__'
-UPLOAD_IMAGE_FOLDER = 'modes\\Image\\static'
-IMAGE_CACHE_FOLDER = 'modes\\Image\\__pycache__'
+UPLOAD_IMAGE_FOLDER = Path('modes/Image/static')
+IMAGE_CACHE_FOLDER = Path('modes/Image/__pycache__')
+UPLOAD_TEXT_FOLDER = Path('modes/Text/static')
+TEXT_CACHE_FOLDER = Path('modes/Text/__pycache__')
+UPLOAD_AUDIO_FOLDER = Path('modes/Audio/static')
+AUDIO_CACHE_FOLDER = Path('modes/Audio/__pycache__')
+UPLOAD_VIDEO_FOLDER = Path('modes/Video/static')
+VIDEO_CACHE_FOLDER = Path('modes/Video/__pycache__')
+UPLOAD_IMAGE_FOLDER =Path('modes/Image/static')
+IMAGE_CACHE_FOLDER = Path('modes/Image/__pycache__')
 
 
 
