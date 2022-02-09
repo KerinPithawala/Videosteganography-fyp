@@ -1,4 +1,4 @@
-from pathlib import Path
+
 from stegano import lsb
 from os.path import isfile, join
 
