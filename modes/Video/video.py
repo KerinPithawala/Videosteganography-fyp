@@ -1,3 +1,4 @@
+from pathlib import Path
 from stegano import lsb
 from os.path import isfile, join
 
@@ -160,7 +161,7 @@ def decrypt(video):
     return result
 
 
-def clean_tmp(path="./tmp"):
+def clean_tmp(path=Path("./tmp")):
     if os.path.exists(path):
         shutil.rmtree(path)
         print("[INFO] tmp files are cleaned up")
