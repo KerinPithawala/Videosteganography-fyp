@@ -15,8 +15,7 @@ UPLOAD_AUDIO_FOLDER = Path('modes/Audio/static')
 AUDIO_CACHE_FOLDER = Path('modes/Audio/__pycache__')
 UPLOAD_VIDEO_FOLDER = Path('modes/Video/static')
 VIDEO_CACHE_FOLDER = Path('modes/Video/__pycache__')
-UPLOAD_IMAGE_FOLDER =Path('modes/Image/static')
-IMAGE_CACHE_FOLDER = Path('modes/Image/__pycache__')
+
 
 
 
@@ -31,6 +30,8 @@ app.config['UPLOAD_AUDIO_FOLDER'] = UPLOAD_AUDIO_FOLDER
 app.config['AUDIO_CACHE_FOLDER'] = AUDIO_CACHE_FOLDER
 app.config['UPLOAD_IMAGE_FOLDER'] = UPLOAD_IMAGE_FOLDER
 app.config['IMAGE_CACHE_FOLDER'] = IMAGE_CACHE_FOLDER
+app.config['UPLOAD_TEXT_FOLDER'] = UPLOAD_TEXT_FOLDER
+app.config['IMAGE_TEXT_FOLDER'] = TEXT_CACHE_FOLDER
 
 
 app.register_blueprint(text, url_prefix="/text")
