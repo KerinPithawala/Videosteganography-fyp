@@ -16,6 +16,8 @@ from werkzeug.utils import secure_filename
 video = Blueprint("video", __name__, static_folder="static",
                   template_folder="templates")
 
+todecrypt=[]
+
 p=3
 q=11
 
@@ -158,11 +160,11 @@ def video_decode_result():
         if 'file' not in request.files:
             flash('No Video found')
             # return redirect(request.url)
-        receiver_p = request.form.get("p")
-        receiver_q = request.form.get("q")
+        #receiver_p = request.form.get("p")
+        #receiver_q = request.form.get("q")
         
-        if receiver_p != 3 or receiver_q != 11:
-            return redirect(request.url)
+        #if receiver_p != 3 or receiver_q != 11:
+         #   return redirect(request.url)
 
 
         file = request.files['video']
@@ -246,7 +248,7 @@ def frame_extraction(video):
 
 def encode_string(input_string, root="./tmp/"):
     ciphertxt=rsa_encrypt(public,input_string)
-     
+    todecrypt=ciphertxt
     list_string= [str(x) for x in ciphertxt]
     print(ciphertxt)
     print(type(ciphertxt))
@@ -260,6 +262,7 @@ def encode_string(input_string, root="./tmp/"):
 
 
 def decrypt(video):
+    
     frame_extraction(video)
     secret = []
     root = "./tmp/"
@@ -269,10 +272,10 @@ def decrypt(video):
         if secret_dec == None:
             break
         secret.append(secret_dec)
-    intsecret = [str(x) for x in intsecret]
-    result = ','.join([i for i in intsecret])
-    print(type(result))
-    final_result = rsa_decrypt(private,result)
+    #intsecret = [int(x) for x in secret]
+    result = ','.join([i for i in secret])
+    
+    final_result = rsa_decrypt(private,todecrypt)
     print(final_result)
     clean_tmp()
     return final_result
