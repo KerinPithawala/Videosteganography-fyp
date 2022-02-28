@@ -97,21 +97,19 @@ def rsa_encrypt(pub_key,n_text):
         elif(i.isspace()):
             spc=400
             x.append(400)
-    return x
-     
+    return x  
  
 #Decryption
 '''DECRYPTION ALGORITHM'''
-def rsa_decrypt(priv_key,c_text):
-    d,n=priv_key
-    txt=c_text.split(',')
+def rsa_decrypt(priv_key,secret):
+    d,n=priv_key   
     x=''
     m=0
-    for i in txt:
+    for i in secret:
         if(i=='400'):
             x+=' '
         else:
-            m=(int(i)**d)%n
+            m=(int(float(i))**d)%n
             m+=65
             c=chr(m)
             x+=c
@@ -159,12 +157,7 @@ def video_decode_result():
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('No Video found')
-            # return redirect(request.url)
-        #receiver_p = request.form.get("p")
-        #receiver_q = request.form.get("q")
-        
-        #if receiver_p != 3 or receiver_q != 11:
-         #   return redirect(request.url)
+            
 
 
         file = request.files['video']
@@ -272,10 +265,13 @@ def decrypt(video):
         if secret_dec == None:
             break
         secret.append(secret_dec)
+    #print(secret_dec)
     #intsecret = [int(x) for x in secret]
-    result = ','.join([i for i in secret])
+    print("secret=", secret)
     
-    final_result = rsa_decrypt(private,todecrypt)
+    
+    final_result = rsa_decrypt(private, secret)
+    
     print(final_result)
     clean_tmp()
     return final_result
