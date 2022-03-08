@@ -1,5 +1,8 @@
 from stegano import lsb
 from os.path import isfile, join
+
+import face_recognition
+
 import math
 import time  # install time ,opencv,numpy modules
 import cv2
@@ -147,9 +150,44 @@ def video_encode_result():
         return render_template("encode-video-result.html", message=message, result=result, file=file, encryption=encryption)
 
 
+cam = cv2.VideoCapture(0)
+def check_face():
+    database ={'saket':"images\Photo on 07-03-22 at 11.54 AM #2.jpg", 'sarthak': "images\Photo on 07-03-22 at 11.54 AM.jpg"}
+    encodings={}
+    for k,v in database.items():
+        image = face_recognition.load_image_file(v)
+        encoding = face_recognition.face_encodings(image)[0]
+        encodings[k] = encoding
+
+    
+
+    while True:
+        check, frame = cam.read()
+        cv2.imshow('video', frame)
+        unknown_encoding = face_recognition.face_encodings(frame)
+        if len(unknown_encoding):
+            unknown_encoding = unknown_encoding[0]
+            results = face_recognition.compare_faces(list(encodings.values()), unknown_encoding)
+    
+            if True in results:
+                
+                return True
+                break
+
+
+
+    cam.release()
+    cv2.destroyAllWindows()
+
+
+
 @video.route("/decode")
 def video_decode():
-    return render_template("decode-video.html")
+    res=check_face()
+    if res==True:
+        cam.release()
+        cv2.destroyAllWindows()
+        return render_template("decode-video.html")
 
 
 @video.route("/decode-result", methods=['POST', 'GET'])
@@ -281,3 +319,6 @@ def clean_tmp(path="./tmp"):
     if os.path.exists(path):
         shutil.rmtree(path)
         print("[INFO] tmp files are cleaned up")
+
+
+cv2.destroyAllWindows()
