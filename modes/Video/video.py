@@ -81,6 +81,8 @@ private = (d,n)
 print("Private Key is:",private)
 print("Public Key is:",public)
 
+#Array to store the case of letter 
+A=[]
  
 #Encryption
 '''ENCRYPTION ALGORITHM.'''
@@ -90,17 +92,22 @@ def rsa_encrypt(pub_key,n_text):
     m=0
     for i in n_text:
         if(i.isupper()):
+            A.append(0)
             m = ord(i)-65
             c=(m**e)%n
             x.append(c)
-        elif(i.islower()):               
+        elif(i.islower()): 
+            A.append(1)              
             m= ord(i)-97
             c=(m**e)%n
             x.append(c)
         elif(i.isspace()):
+            A.append(2)
             spc=400
             x.append(400)
     return x  
+
+print(A)
  
 #Decryption
 '''DECRYPTION ALGORITHM'''
@@ -176,8 +183,7 @@ def check_face():
 
 
 
-    cam.release()
-    cv2.destroyAllWindows()
+    
 
 
 
@@ -309,10 +315,23 @@ def decrypt(video):
     
     
     final_result = rsa_decrypt(private, secret)
+
+    li_final_result=list(final_result)
+
+    for i in range(0,len(A)):
+        if A[i]==1:
+            li_final_result[i]=li_final_result[i].lower()
+
+    print(li_final_result)
+
+    output_result="".join(li_final_result)
     
-    print(final_result)
+    print(output_result)
+    
+    
+            
     clean_tmp()
-    return final_result
+    return output_result
 
 
 def clean_tmp(path="./tmp"):
