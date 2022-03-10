@@ -352,6 +352,9 @@ modes/Video/static/*
 # env
 venv/
 
+#DS_Store
+.DS_Store
+
 # others
 .vscode
 modes/Video/ffmpeg
@@ -359,3 +362,4 @@ modes/Video/ffmpeg
 
 
 
+*.jpg
