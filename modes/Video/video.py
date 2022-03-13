@@ -157,8 +157,9 @@ def video_encode_result():
         return render_template("encode-video-result.html", message=message, result=result, file=file, encryption=encryption)
 
 
-cam = cv2.VideoCapture(0)
+@video.route("/decode")
 def check_face():
+    cam = cv2.VideoCapture(0)
     database ={'saket':"images\Photo on 07-03-22 at 11.54 AM #2.jpg", 'sarthak': "images\Photo on 07-03-22 at 11.54 AM.jpg", 'kerin':"images\Kerin-Test.jpg"}
     encodings={}
     for k,v in database.items():
@@ -167,7 +168,7 @@ def check_face():
         encodings[k] = encoding
 
     
-
+    
     while True:
         check, frame = cam.read()
         cv2.imshow('video', frame)
@@ -177,23 +178,16 @@ def check_face():
             results = face_recognition.compare_faces(list(encodings.values()), unknown_encoding)
     
             if True in results:
-                
-                return True
+                cam.release()
+                cv2.destroyAllWindows()
+                return render_template("decode-video.html")
+
                 break
 
 
-
     
-
-
-
-@video.route("/decode")
-def video_decode():
-    res=check_face()
-    if res==True:
-        cam.release()
-        cv2.destroyAllWindows()
-        return render_template("decode-video.html")
+        
+        
 
 
 @video.route("/decode-result", methods=['POST', 'GET'])
@@ -340,4 +334,3 @@ def clean_tmp(path="./tmp"):
         print("[INFO] tmp files are cleaned up")
 
 
-cv2.destroyAllWindows()
