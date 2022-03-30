@@ -78,7 +78,7 @@ eugcd(e,r)
 d = mult_inv(e,r)
 public = (e,n)
 private = (d,n)
-print("Private Key is:",private)
+#print("Private Key is:",private)
 print("Public Key is:",public)
 
 #Array to store the case of letter 
@@ -160,7 +160,7 @@ def video_encode_result():
 @video.route("/decode")
 def check_face():
     cam = cv2.VideoCapture(0)
-    database ={'saket':"images\Photo on 07-03-22 at 11.54 AM #2.jpg", 'sarthak': "images\Photo on 07-03-22 at 11.54 AM.jpg", 'kerin':"images\Kerin-Test.jpg"}
+    database ={'sarthak': "images\Photo on 07-03-22 at 11.54 AM.jpg", 'kerin':"images\Kerin-Test.jpg"}
     encodings={}
     for k,v in database.items():
         image = face_recognition.load_image_file(v)
